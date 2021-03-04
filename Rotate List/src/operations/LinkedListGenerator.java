@@ -109,7 +109,7 @@ public class LinkedListGenerator {
 		System.out.print("\nLinkedList:\n");
 
 		// Traverse through the LinkedList
-		while (currNode != null) {
+		while (currNode != list.tail.next) {
 			// Print the data at current node
 			System.out.print(currNode.data + " ");
 

@@ -62,6 +62,18 @@ public class RotateList {
 			list.insertNodeStart(list, temp);
 		}
 	}
+	
+	private void detectLoop() {
+		if(list.tail.next!=null){
+			System.out.println("\nThere is a loop in the list !");
+		}else{
+			System.out.println("\nNo loop exists !");
+		}
+	}
+	
+	private void createTryLoop() {
+		list.tail.next=list.head.next;
+	}
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
@@ -92,13 +104,14 @@ public class RotateList {
 		} catch (Exception e) {
 			System.out.println("\n" + e.getMessage());
 		}
+		
+		//Detecting loop in list
+		list2.detectLoop();
+		list2.createTryLoop(); //created a try loop
+		list2.detectLoop();
+		
+		
 		in.close();
-
-		// LinkedListGenerator listt = new LinkedListGenerator();
-		//
-		//
-		// // Insert the values
-		// listt.insertNode(listt, 1);
 
 	}
 
