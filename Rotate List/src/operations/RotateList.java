@@ -1,9 +1,10 @@
-import java.util.LinkedList;
+package operations;
+
 import java.util.Scanner;
 
 public class RotateList {
 
-	LinkedList<Integer> list = new LinkedList<>();
+	LinkedListGenerator list = new LinkedListGenerator();
 	int size;
 	Scanner in = new Scanner(System.in);
 
@@ -13,16 +14,14 @@ public class RotateList {
 		size = in.nextInt();
 		System.out.println("Enter " + size + " elements:");
 		for (int i = 0; i < size; i++) {
-			list.add(in.nextInt());
+			list.insertNodeEnd(list, in.nextInt());
 		}
 
 	}
 
 	// Displaying list
 	private void displayList() {
-		for (int i = 0; i < list.size(); i++) {
-			System.out.print(list.get(i) + " ");
-		}
+		list.printList(list);
 	}
 
 	/*
@@ -34,20 +33,21 @@ public class RotateList {
 	 * 
 	 * @param right => Ending position of sublist from listMain
 	 */
-	private void subList(LinkedList<Integer> listMain, int left, int right)
+	private void subList(LinkedListGenerator listMain, int left, int right)
 			throws Exception {
-		if (left < 1 || left > listMain.size() || left > listMain.size()
-				|| right < 1 || right > listMain.size()
-				|| right > listMain.size()) {
+		listMain.getLen(listMain);
+		list.getLen(list);
+		if (left < 1 || left > listMain.len || left > listMain.len || right < 1
+				|| right > listMain.len || right > listMain.len) {
 
 			throw new Exception(
 					"Left and Right positions are not in range of main list !");
 
 		}
-		for (int i = left - 1; i < right; i++) {
-			list.add(listMain.get(i));
+		for (int i = left; i <= right; i++) {
+			int data = listMain.get(listMain, i);
+			list.insertNodeEnd(list, data);
 		}
-		size = list.size();
 	}
 
 	/*
@@ -58,8 +58,8 @@ public class RotateList {
 	private void rotateList(int rotations) {
 		int temp;
 		for (int i = 0; i < rotations; i++) {
-			temp = list.remove();
-			list.add(temp);
+			temp = list.removeNodeEnd(list);
+			list.insertNodeStart(list, temp);
 		}
 	}
 
@@ -93,6 +93,13 @@ public class RotateList {
 			System.out.println("\n" + e.getMessage());
 		}
 		in.close();
+
+		// LinkedListGenerator listt = new LinkedListGenerator();
+		//
+		//
+		// // Insert the values
+		// listt.insertNode(listt, 1);
+
 	}
 
 }
