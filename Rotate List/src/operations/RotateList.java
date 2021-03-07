@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class RotateList {
 
-	LinkedListGenerator list = new LinkedListGenerator();
-	int size;
+	private LinkedListGenerator list = new LinkedListGenerator();
+	private int size;
 	Scanner in = new Scanner(System.in);
 
 	// Initializing list
@@ -62,17 +62,17 @@ public class RotateList {
 			list.insertNodeStart(list, temp);
 		}
 	}
-	
+
 	private void detectLoop() {
-		if(list.tail.next!=null){
+		if (list.tail.next != null) {
 			System.out.println("\nThere is a loop in the list !");
-		}else{
+		} else {
 			System.out.println("\nNo loop exists !");
 		}
 	}
-	
+
 	private void createTryLoop() {
-		list.tail.next=list.head.next;
+		list.tail.next = list.head.next;
 	}
 
 	public static void main(String[] args) {
@@ -104,13 +104,12 @@ public class RotateList {
 		} catch (Exception e) {
 			System.out.println("\n" + e.getMessage());
 		}
-		
-		//Detecting loop in list
+
+		// Detecting loop in list
 		list2.detectLoop();
-		list2.createTryLoop(); //created a try loop
+		list2.createTryLoop(); // created a try loop
 		list2.detectLoop();
-		
-		
+
 		in.close();
 
 	}

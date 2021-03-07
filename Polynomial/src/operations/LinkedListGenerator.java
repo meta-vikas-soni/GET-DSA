@@ -13,7 +13,7 @@ public class LinkedListGenerator {
 	Node head, tail; // head and tail of list
 	int len;
 
-	static class Node {
+	public static class Node {
 		Node depth;
 		int coeff;
 		String var;
@@ -48,6 +48,17 @@ public class LinkedListGenerator {
 		}
 	}
 
+	// Method to insert a depth node at end
+	public void insertDepthNode(ArrayList<Node> nodeArray) {
+		for (int i = 1; i < nodeArray.size(); i++) {
+			Node temp_node = nodeArray.get(0);
+			while (temp_node.depth != null) {
+				temp_node = temp_node.depth;
+			}
+			temp_node.depth = nodeArray.get(i);
+		}
+	}
+
 	public static String superscript(String str) {
 		str = str.replaceAll("0", "");
 		str = str.replaceAll("1", "");
@@ -60,17 +71,6 @@ public class LinkedListGenerator {
 		str = str.replaceAll("8", "^8");
 		str = str.replaceAll("9", "^9");
 		return str;
-	}
-
-	// Method to insert a depth node at end
-	public void insertDepthNode(ArrayList<Node> nodeArray) {
-		for (int i = 1; i < nodeArray.size(); i++) {
-			Node temp_node = nodeArray.get(0);
-			while (temp_node.depth != null) {
-				temp_node = temp_node.depth;
-			}
-			temp_node.depth = nodeArray.get(i);
-		}
 	}
 
 	public void getLen(LinkedListGenerator list) {
