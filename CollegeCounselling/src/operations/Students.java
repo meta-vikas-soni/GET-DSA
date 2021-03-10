@@ -1,0 +1,43 @@
+package operations;
+
+import java.io.FileInputStream;
+import java.util.ArrayList;
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class Students {
+
+	private static Workbook wb;
+	private static FileInputStream fis;
+	private static Sheet sheet;
+
+	ArrayList<Student> studentList = new ArrayList<Student>();
+
+	public void readStudents() throws Exception {
+		fis = new FileInputStream("src/files/students.xlsx");
+		wb = WorkbookFactory.create(fis);
+		sheet = wb.getSheet("Sheet1");
+		int noOfRows = sheet.getLastRowNum();
+
+		for (int i = 1; i <= noOfRows; i++) {
+			Student obj = new Student();
+			obj.createStudent(sheet.getRow(i).getCell(0).toString(), sheet
+					.getRow(i).getCell(1).toString(), "-");
+			studentList.add(obj);
+		}
+	}
+
+	public void displayStudents() {
+		System.out.println("Name\t\tAllocation\tPreferences");
+		for (int i = 0; i < studentList.size(); i++) {
+			System.out.print(studentList.get(i).name + "\t");
+			System.out.print(studentList.get(i).allocation + "\t\t");
+			System.out.print(String.join(",", studentList.get(i).preference)
+					+ "\n");
+		}
+
+	}
+
+}
