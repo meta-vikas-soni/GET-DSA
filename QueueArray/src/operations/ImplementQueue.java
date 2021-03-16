@@ -11,7 +11,7 @@ public class ImplementQueue {
 		System.out.println("Enter size of queue: ");
 		Queue queue = new Queue(in.nextInt());
 		boolean flag = true;
-
+		try{
 		while (flag) {
 			int choice;
 			System.out
@@ -36,6 +36,9 @@ public class ImplementQueue {
 				System.out.println("Invalid Option !");
 
 			}
+		}}
+		catch(Exception e){
+			System.out.print("Invalid option!");
 		}
 		in.close();
 

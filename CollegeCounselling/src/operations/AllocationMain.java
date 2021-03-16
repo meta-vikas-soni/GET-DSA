@@ -36,7 +36,7 @@ public class AllocationMain {
 
 		// processing each student by dequeuing from queue
 		for (int i = 0; i < students.studentList.size(); i++) {
-			Student studentObj = queue.dequeue();
+			Student studentObj = (Student) queue.dequeue();
 			boolean courseAllocated = false;
 			String courseName = null;
 			for (int j = 0; j < studentObj.preference.length; j++) {

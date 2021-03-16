@@ -1,8 +1,10 @@
 package operations;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -15,7 +17,7 @@ public class Students {
 
 	ArrayList<Student> studentList = new ArrayList<Student>();
 
-	public void readStudents() throws Exception {
+	public void readStudents() throws EncryptedDocumentException, IOException  {
 		fis = new FileInputStream("src/files/students.xlsx");
 		wb = WorkbookFactory.create(fis);
 		sheet = wb.getSheet("Sheet1");

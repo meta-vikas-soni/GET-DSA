@@ -35,8 +35,8 @@ public class InfixEvaluation {
 
 		// Stack<Character> operator = new Stack<>();
 		// Stack<Integer> operand = new Stack<>();
-		
-		StackInterfaceChar operator = new StackInterfaceChar();
+
+		StackInterface operator = new StackInterface();
 		StackInterface operand = new StackInterface();
 
 		for (int i = 0; i < exp.length(); i++) {
@@ -45,13 +45,18 @@ public class InfixEvaluation {
 			if (ch == '(') {
 				operator.push(ch);
 			} else if (Character.isDigit(ch)) {
-				operand.push(ch - '0');
+				String val = "";
+				while (i < exp.length() && Character.isDigit(exp.charAt(i))) {
+					val = val + exp.charAt(i++);
+				}
+				operand.push(Integer.parseInt(val));
+				i--;
 			} else if (ch == '+' || ch == '-' || ch == '*' || ch == '/') {
-				while (operator.size() > 0 && operator.peek() != '('
-						&& precedence(ch) <= precedence(operator.peek())) {
-					int val2 = operand.pop();
-					int val1 = operand.pop();
-					char op = operator.pop();
+				while (operator.size() > 0 && (char) operator.peek() != '('
+						&& precedence(ch) <= precedence((char) operator.peek())) {
+					int val2 = (int) operand.pop();
+					int val1 = (int) operand.pop();
+					char op = (char) operator.pop();
 
 					int opval = operation(val1, val2, op);
 					operand.push(opval);
@@ -59,10 +64,10 @@ public class InfixEvaluation {
 
 				operator.push(ch);
 			} else if (ch == ')') {
-				while (operator.size() > 0 && operator.peek() != '(') {
-					int val2 = operand.pop();
-					int val1 = operand.pop();
-					char op = operator.pop();
+				while (operator.size() > 0 && (char) operator.peek() != '(') {
+					int val2 = (int) operand.pop();
+					int val1 = (int) operand.pop();
+					char op = (char) operator.pop();
 
 					int opval = operation(val1, val2, op);
 					operand.push(opval);
@@ -74,14 +79,14 @@ public class InfixEvaluation {
 			}
 		}
 		while (operator.size() > 0) {
-			char optor = operator.pop();
-			int v2 = operand.pop();
-			int v1 = operand.pop();
+			char optor = (char) operator.pop();
+			int v2 = (int) operand.pop();
+			int v1 = (int) operand.pop();
 
 			int opv = operation(v1, v2, optor);
 			operand.push(opv);
 		}
-		int val = operand.pop();
+		int val = (int) operand.pop();
 		System.out.println("\nOutput: " + val);
 
 		in.close();

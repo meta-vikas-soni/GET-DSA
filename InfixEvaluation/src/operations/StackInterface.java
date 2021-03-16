@@ -2,16 +2,16 @@ package operations;
 
 class StackInterface {
 	int size;
-	int arr[];
+	Object arr[];
 	int top;
 
 	StackInterface() {
 		this.size = 100;
-		this.arr = new int[size];
+		this.arr = new Object[size];
 		this.top = -1;
 	}
 
-	public void push(int element) {
+	public void push(Object element) {
 		if (top == size - 1) {
 			System.out.println("Stack is full");
 
@@ -21,7 +21,7 @@ class StackInterface {
 		}
 	}
 
-	public int pop() {
+	public Object pop() {
 		if (!isEmpty()) {
 			int element = top;
 			top--;
@@ -32,8 +32,8 @@ class StackInterface {
 		}
 	}
 
-	public int peek() {
-		if (!this.isEmpty())
+	public Object peek() {
+		if (!isEmpty())
 			return arr[top];
 		else {
 			System.out.println("Stack is Empty");

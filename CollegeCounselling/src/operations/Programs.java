@@ -2,6 +2,7 @@ package operations;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -13,20 +14,21 @@ public class Programs {
 	private static FileInputStream fis;
 	private static Sheet sheet;
 
-	HashMap<String, Integer> programList = new HashMap<String, Integer>();
+	// Map<String, Integer> programList = new HashMap<String, Integer>();
+	Map<String, Integer> programList = new HashMap<String, Integer>();
 
 	public void readPrograms() throws Exception {
 		fis = new FileInputStream("src/files/programs.xlsx");
 		wb = WorkbookFactory.create(fis);
 		sheet = wb.getSheet("Sheet1");
 		int noOfRows = sheet.getLastRowNum();
-
 		for (int i = 1; i <= noOfRows; i++) {
 			programList.put(
 					sheet.getRow(i).getCell(0).toString(),
 					(int) Math.round(Double.parseDouble(sheet.getRow(i)
 							.getCell(1).toString())));
 		}
+
 	}
 
 	public void displayPrograms() {
