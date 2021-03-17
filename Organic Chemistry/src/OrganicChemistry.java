@@ -49,7 +49,6 @@ public class OrganicChemistry {
 				num = Integer.parseInt(String.valueOf(compound.charAt(i)));
 				molecularMass += (num * temp);
 				continue;
-
 			}
 			// next char is digit
 			else if (Character.isDigit(compound.charAt(i + 1))) {
