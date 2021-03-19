@@ -15,7 +15,7 @@ public class GenerateQueueMain {
 			while (flag) {
 				int choice;
 				System.out
-						.println("\n1. Enqueue\n2. Dequeue \n3. Peek\n4. Exit\n");
+						.println("\n1. Enqueue\n2. Dequeue \n3. Peek\n4. Display Queue\n5. Exit\n");
 				choice = in.nextInt();
 				switch (choice) {
 				case 1:
@@ -34,6 +34,9 @@ public class GenerateQueueMain {
 							+ queue.getDataByIndex(index));
 					break;
 				case 4:
+					queue.displayQueue();
+					break;
+				case 5:
 					flag = false;
 					break;
 				default:

@@ -34,29 +34,28 @@ public class PriorityQueueInterface {
 	}
 
 	public void dequeue() {
-		if (front == -1) {
-			System.out.print("Queue is Empty");
+		if (front == -1 || rear == -1) {
+			System.out.print("Queue is Empty !");
 			return;
 		}
 		// one element
 		if (front == rear) {
+			System.out.print("Removed " + queue[front].data + "\n");
 			front = -1;
 			rear = -1;
 		} else {
-			front = front + 1;
-		}
+			int index = peek();
+			System.out.print("Removed " + queue[index].data + "\n");
+			// find the position of the element with highest priority and left
+			// shift in array
+			for (int i = index; i < rear; i++) {
+				queue[i] = queue[i + 1];
+			}
 
-		int index = peek();
-		// find the position of the element with highest priority and left shift
-		// in array
-		for (int i = index; i < rear; i++) {
-			queue[i] = queue[i + 1];
+			// Decrease the size of the
+			// priority queue by one
+			rear--;
 		}
-
-		// Decrease the size of the
-		// priority queue by one
-		rear--;
-		System.out.print("Removed " + queue[index].data + "\n");
 	}
 
 	// returns index of highest priority
@@ -64,22 +63,28 @@ public class PriorityQueueInterface {
 		int highestPriority = -999;
 		int index = -1;
 
-		// Check for the element with
-		// highest priority
+		// Check for the element with highest priority
 		for (int i = 0; i <= rear; i++) {
-
-			// If priority is same choose the element with the highest value
-			if (highestPriority == queue[i].priority && index > -1
-					&& queue[index].data > queue[i].data) {
-				highestPriority = queue[i].priority;
-				index = i;
-			} else if (highestPriority < queue[i].priority) {
+			if (highestPriority < queue[i].priority) {
 				highestPriority = queue[i].priority;
 				index = i;
 			}
 		}
 
 		return index;
+	}
+
+	// display queue
+	public void displayQueue() {
+		if (front == -1 || rear == -1) {
+			System.out.println("\nQueue is empty !");
+		} else {
+			System.out.println("Data\tPriority");
+			for (int i = front; i <= rear; i++) {
+				System.out.print(queue[i].data + "\t" + queue[i].priority
+						+ "\n");
+			}
+		}
 	}
 
 	public int getDataByIndex(int index) {
