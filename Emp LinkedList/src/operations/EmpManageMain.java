@@ -29,10 +29,11 @@ public class EmpManageMain {
 				in.nextLine();
 				break;
 			case "2":
-				empList.head=empList.insertionSortList(empList.head);
+				empList.head = empList.insertionSortList(empList.head);
 				break;
 			case "3":
-				// Collections.sort(empList, new SortByName());
+				System.out.println("Sorted using Quick Sort !");
+				empList.quickSortList(empList.head, empList.tail);
 				break;
 			case "4":
 				empList.printList(empList);

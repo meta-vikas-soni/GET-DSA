@@ -92,7 +92,6 @@ public class PriorityQueueInterface {
 		if (index >= 0 && index <= rear) {
 			data = queue[index].data;
 		}
-
 		return data;
 	}
 

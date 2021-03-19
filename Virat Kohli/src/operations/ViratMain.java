@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class ViratMain {
 
+	
 	public static void main(String[] args) {
 		ArrayList<Integer> bowlList = new ArrayList<Integer>();
 		Scanner in = new Scanner(System.in);
